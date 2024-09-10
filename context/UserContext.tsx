@@ -27,7 +27,7 @@ const UserContextProvider = ({children}:{children:ReactNode}) => {
   const onSubmit = () => {
     // if(!userData.correo || !userData.pass) return console.log("Correo y contraseña obligatorios")
     // login(userData).then(data => console.log(data)).catch(err => console.log(err))
-    ActService.getActs().then(data => console.log(data))
+     ActService.getActs().then(data => console.log(data))
   }
 
 

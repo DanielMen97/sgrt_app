@@ -7,7 +7,6 @@ export const ActService = {
   async getActs() {
     try {
       const response = await axios.get(`http://localhost:8080/public/act`);
-      console.log(response);
     } catch (error) {
       console.error(error);
       return null;
@@ -19,7 +18,7 @@ export const login = (userData: UserDataI) => {
   return fetch(`${baseUrl}/auth/login`, {method:'POST', headers: {
     'Content-Type': 'application/json'
   }, body: JSON.stringify(userData)})
-  .then(response => response.json)
+  .then(response => response.json())
 }
 
 export const getModules = () => {
