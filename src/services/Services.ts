@@ -6,8 +6,8 @@ const baseUrl: string = 'http://localhost:8080'
 export const ActService = {
   async getActs() {
     try {
-      const response = await axios.get(`https://pokeapi.co/api/v2/ability/1`);
-      return response.data;
+      const response = await axios.get(`http://localhost:8080/public/act`);
+      console.log(response);
     } catch (error) {
       console.error(error);
       return null;
