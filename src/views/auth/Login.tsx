@@ -1,12 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
+import { StyleSheet, Text, View, TextInput, Pressable, TouchableOpacity } from "react-native";
 import {
   faUserAstronaut,
   faLock,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import useLogin from "./useLogin";
 
 const Login = () => {
+
+  const { handleInputChange, onSubmit} = useLogin();
+
   return (
     <View style={styles.loginContainer}>
       <FontAwesomeIcon size={100} icon={faUserAstronaut} style={styles.logo} />
@@ -22,6 +26,7 @@ const Login = () => {
             placeholder="Correo electronico"
             placeholderTextColor="#FFFFFF"
             keyboardType="email-address"
+            onChangeText={value => handleInputChange("correo", value)}
           />
         </View>
         <View style={styles.formInput}>
@@ -31,12 +36,13 @@ const Login = () => {
             placeholder="Contraseña"
             placeholderTextColor="#FFFFFF"
             keyboardType="default"
+            onChangeText={value => handleInputChange("pass", value)}
             secureTextEntry={true}
           />
         </View>
-        <Pressable style={styles.buttonLogin}>
+        <TouchableOpacity style={styles.buttonLogin} onPress={onSubmit}>
           <Text style={styles.labelButton}>Ingresar</Text>
-        </Pressable>
+        </TouchableOpacity>
         <Text style={styles.version}>Version 1.001</Text>
         <Text style={styles.colaborators}>By Andres Ruiz Deibyth Padilla Cristian Mendoza</Text>
       </View>

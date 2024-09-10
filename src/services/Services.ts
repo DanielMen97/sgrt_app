@@ -1,12 +1,25 @@
+import axios from "axios";
 import { UserDataCreateI, UserDataI } from "../models/Global"
 
 const baseUrl: string = 'http://localhost:8080'
+
+export const ActService = {
+  async getActs() {
+    try {
+      const response = await axios.get(`https://pokeapi.co/api/v2/ability/1`);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  },
+};
 
 export const login = (userData: UserDataI) => {
   return fetch(`${baseUrl}/auth/login`, {method:'POST', headers: {
     'Content-Type': 'application/json'
   }, body: JSON.stringify(userData)})
-  .then(response => response.json())
+  .then(response => response.json)
 }
 
 export const getModules = () => {
