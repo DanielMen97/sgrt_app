@@ -1,18 +1,8 @@
 import axios from "axios";
 import { UserDataCreateI, UserDataI } from "../models/Global"
 
-const baseUrl: string = 'http://localhost:8080'
+const baseUrl: string = 'http://192.168.1.39:8080'
 
-export const ActService = {
-  async getActs() {
-    try {
-      const response = await axios.get(`http://localhost:8080/public/act`);
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  },
-};
 
 export const login = (userData: UserDataI) => {
   return fetch(`${baseUrl}/auth/login`, {method:'POST', headers: {

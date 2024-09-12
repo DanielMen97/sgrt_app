@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import Table from "../../components/Table";
 
-const Home = () => {
+export const Home = () => {
 
   const columns = ["id", "name", "lastname"]
 
@@ -43,4 +43,3 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Home;

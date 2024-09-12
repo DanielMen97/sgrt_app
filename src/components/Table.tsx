@@ -13,7 +13,7 @@ const Table = ({ columns, data }: props) => {
       <View style={styles.thead}>
         {columns.map((item) => (
           <View key={columns.indexOf(item) + 1} style={styles.th}>
-            <Text>{item}</Text>
+            <Text style={styles.text}>{item}</Text>
           </View>
         ))}
       </View>
@@ -23,7 +23,7 @@ const Table = ({ columns, data }: props) => {
             {Object.keys(item).map((elem) => {
               if (columns.includes(elem)) return (
                 <View key={Object.keys(item).indexOf(elem) + 1} style={styles.td}>
-                  <Text>{item[elem]}</Text>
+                  <Text style={styles.text}>{item[elem]}</Text>
                 </View>
               )
             }
@@ -38,21 +38,29 @@ const Table = ({ columns, data }: props) => {
 const styles = StyleSheet.create({
   table: {
     borderWidth: 2,
+    borderColor: 'gray',
+    borderRadius: 10,
+    padding: 8
   },
   thead: {
-    backgroundColor: "blue",
     flexDirection: "row",
   },
-  th: {},
+  th: {
+    width: 60
+  },
   tbody: {
   },
   tr: {
-    borderWidth: 2,
-    borderColor: 'red',
-    flexDirection: 'row'
+    borderTopWidth: 2,
+    borderColor: 'gray',
+    flexDirection: 'row',
   },
   td: {
+    width: 60
   },
+  text:{
+    textAlign: 'center'
+  }
 });
 
 export default Table;

@@ -1,9 +1,12 @@
 import React, { createContext, ReactNode, useState } from 'react'
-import { login, ActService } from '../src/services/Services'
+import { login } from '../src/services/Services'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ToastAndroid } from 'react-native';
 
 interface UserContextI {
   handleInputChange: (property: string, value: string | null) => void;
   onSubmit: () => void;
+  response?: any
 }
 
 const UserContextContextDefault: UserContextI = {
@@ -20,20 +23,27 @@ const UserContextProvider = ({children}:{children:ReactNode}) => {
     pass: ""
   })
 
+  const [response, setResponse] = useState({})
+
   const handleInputChange = (property: string, value: string | null) => {
     setUserData({...userData, [property]:value})
   }
 
   const onSubmit = () => {
-    // if(!userData.correo || !userData.pass) return console.log("Correo y contraseña obligatorios")
-    // login(userData).then(data => console.log(data)).catch(err => console.log(err))
-     ActService.getActs().then(data => console.log(data))
+    if(!userData.correo || !userData.pass) return console.log("Correo y contraseña obligatorios")
+    login(userData).then(data => {
+      AsyncStorage.setItem('token', data.token)
+      console.log(`Token: ${data.token}`)
+      setResponse(data) 
+  }).catch(() => {
+    ToastAndroid.show("Usuario o contraseña incorrectos", ToastAndroid.LONG)
+  })
   }
-
-
+  
   const value = {
     handleInputChange,
-    onSubmit
+    onSubmit,
+    response
   }
 
   return (
