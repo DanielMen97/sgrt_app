@@ -1,22 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import Table from "../../components/Table";
+import useHome from "./useHome";
 
 export const Home = () => {
 
-  const columns = ["id", "name", "lastname"]
-
-  const data = [
-    {
-      "id": 1, "name": "Daniel", "lastname": "Mendoza", "age": 19
-    },
-    {
-      "id": 2, "name": "Jose", "lastname": "Pulido"
-    },
-    {
-      "id": 3, "name": "Martha", "lastname": "Aguilar"
-    }
-  ]
+  const { columns, data } = useHome()
   return (
     <View style={styles.container}>
       <Text>Solicitudes</Text>
