@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useState } from 'react'
-import { login } from '../src/services/Services'
+import { login } from '../services/Services'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ToastAndroid } from 'react-native';
 
@@ -30,7 +30,7 @@ const UserContextProvider = ({children}:{children:ReactNode}) => {
   }
 
   const onSubmit = () => {
-    if(!userData.correo || !userData.pass) return console.log("Correo y contraseña obligatorios")
+    if(!userData.correo || !userData.pass) return ToastAndroid.show("Usuario o contraseña obligatorio", ToastAndroid.LONG)
     login(userData).then(data => {
       AsyncStorage.setItem('user', data.nodoc)
       AsyncStorage.setItem('token', data.token)
