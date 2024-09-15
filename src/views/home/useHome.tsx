@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react"
-import { consultationRequestsNoDoc } from "../../services/RequestsServices"
+import { getListRequestByClient } from "../../services/RequestsServices"
 
 const useHome = () => {
 
-  const [request, setRequest] = useState()
+  const [data, setData] = useState([])
 
   useEffect(() => {
-    consultationRequestsNoDoc("12345678").then(data => {
-      setRequest(data)
+    getListRequestByClient().then(response => {
+      setData(response)
     })
   },[])
 
-
   return {
-    request
+    data
   }
 }
 

@@ -1,22 +1,42 @@
 import React from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import Table from "../../components/Table";
+import useHome from "./useHome";
 
 export const Home = () => {
 
-  const columns = ["id", "name", "lastname"]
+  const { data } = useHome()
 
-  const data = [
+  const columns = [
     {
-      "id": 1, "name": "Daniel", "lastname": "Mendoza", "age": 19
+      "header": "N° Sol.",
+      "accessorKey": "idsol",
     },
     {
-      "id": 2, "name": "Jose", "lastname": "Pulido"
+      "header": "Fecha Creación",
+      "accessorKey": "fechacre",
     },
     {
-      "id": 3, "name": "Martha", "lastname": "Aguilar"
+      "header": "Estado",
+      "accessorKey": "idest",
+    },
+    {
+      "header": "Categoria",
+      "accessorKey": "idcat",
+    },
+    {
+      "header": "Tecnico Responsable",
+      "accessorKey": "tecnico",
+    },
+    {
+      "header": "Detalles",
+    },
+    {
+      "header": "Fecha Cierre",
+      "accessorKey":"fechaci"
     }
   ]
+
   return (
     <View style={styles.container}>
       <Text>Solicitudes</Text>

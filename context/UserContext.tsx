@@ -32,6 +32,7 @@ const UserContextProvider = ({children}:{children:ReactNode}) => {
   const onSubmit = () => {
     if(!userData.correo || !userData.pass) return console.log("Correo y contraseña obligatorios")
     login(userData).then(data => {
+      AsyncStorage.setItem('user', data.nodoc)
       AsyncStorage.setItem('token', data.token)
       console.log(`Token: ${data.token}`)
       setResponse(data) 

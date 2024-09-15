@@ -1,8 +1,13 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 
+interface ColumnsI {
+  header: string;
+  accessorKey?: string;
+}
+
 interface props {
-  columns: string[];
+  columns: ColumnsI[];
   data: any[];
 }
 
@@ -13,21 +18,21 @@ const Table = ({ columns, data }: props) => {
       <View style={styles.thead}>
         {columns.map((item) => (
           <View key={columns.indexOf(item) + 1} style={styles.th}>
-            <Text style={styles.text}>{item}</Text>
+            <Text style={styles.text}>{item.header}</Text>
           </View>
         ))}
       </View>
       <View style={styles.tbody}>
         {data.map((item) => (
           <View key={data.indexOf(item) + 1} style={styles.tr}>
-            {Object.keys(item).map((elem) => {
-              if (columns.includes(elem)) return (
-                <View key={Object.keys(item).indexOf(elem) + 1} style={styles.td}>
-                  <Text style={styles.text}>{item[elem]}</Text>
+            {columns.map((elem) => {
+              if (elem.accessorKey) return (
+                <View key={columns.indexOf(elem) + 1} style={styles.td}>
+                  <Text style={styles.text}>{item[elem.accessorKey]}</Text>
                 </View>
               )
+            })
             }
-            )}
           </View>
         ))}
       </View>
@@ -58,7 +63,7 @@ const styles = StyleSheet.create({
   td: {
     width: 60
   },
-  text:{
+  text: {
     textAlign: 'center'
   }
 });

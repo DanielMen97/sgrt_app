@@ -1,7 +1,7 @@
 import { ModifyRequestI, RequestCreateI, UpdateRequestSupervisorI, UpdateRequestTechnicalI } from "../models/RequestModels"
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-const baseUrl: string = 'http://localhost:8080'
+const baseUrl: string = 'http://192.168.1.39:8080'
 
 export const consultRequests = () => {
   const token = localStorage.getItem('token')
@@ -95,13 +95,15 @@ export const updateRequestTech = (requestData: UpdateRequestTechnicalI,idsol:str
   .then(response => response.json())
 }
 
-export const getListRequestByClient = () => {
-  const token = localStorage.getItem('token')
-  const user = localStorage.getItem('user')
-  return fetch(`${baseUrl}/adminuser/solicitudcliente/${user}`, { method: 'GET', headers:{
-    'Authorization': `Bearer ${token}`
-  }})
-  .then(reponse => reponse.json())
+export const getListRequestByClient = async () => {
+  const token = await AsyncStorage.getItem('token')
+  const user = await AsyncStorage.getItem('user')
+  const reponse = await fetch(`${baseUrl}/adminuser/movil/solicitudes/${user}`, {
+    method: 'GET', headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  return await reponse.json()
 } 
 
 export const getDetailsRequest = (requestId: string | undefined) => {
