@@ -1,13 +1,41 @@
 import { useEffect, useState } from "react"
 import { getListRequestByClient } from "../../services/RequestsServices"
 
-interface DataI {
-  
-}
-
 const useHome = () => {
 
   const [data, setData] = useState([])
+
+  const columns = [
+    {
+      header: "N° Sol.",
+      accessorKey: "idsol",
+      size: "small",
+    },
+    {
+      header: "Fecha Creación",
+      accessorKey: "fechacre",
+      size: "medium",
+    },
+    {
+      header: "Estado",
+      accessorKey: "idest",
+      size: "medium",
+    },
+    {
+      header: "Tecnico Responsable",
+      accessorKey: "tecnico",
+      size: "large",
+    },
+    {
+      header: "Detalles",
+      size: "medium",
+    },
+    {
+      header: "Fecha Cierre",
+      accessorKey: "fechaci",
+      size: "medium",
+    },
+  ];
 
   useEffect(() => {
     getListRequestByClient().then(response => {
@@ -16,7 +44,8 @@ const useHome = () => {
   },[])
 
   return {
-    data
+    data,
+    columns
   }
 }
 

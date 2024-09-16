@@ -1,7 +1,7 @@
 import { ModifyRequestI, RequestCreateI, UpdateRequestSupervisorI, UpdateRequestTechnicalI } from "../models/RequestModels"
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-const baseUrl: string = 'http://192.168.1.39:8080'
+const baseUrl: string = 'http://172.29.0.124:8080'
 
 export const consultRequests = () => {
   const token = localStorage.getItem('token')

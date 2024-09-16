@@ -1,6 +1,6 @@
 import { TableAssestsI } from "../models/AssetsModels"
 
-const baseUrl: string = 'http://192.168.1.39:8080'
+const baseUrl: string = 'http://172.29.0.124:8080'
 
 export const getListActs = ()=>{
 const token = localStorage.getItem('token') 

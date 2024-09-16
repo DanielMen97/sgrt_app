@@ -1,64 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, StyleSheet, Text, Pressable, ScrollView } from "react-native";
-import Table from "../../components/Table";
+import Table from "../../components/table/Table";
 import useHome from "./useHome";
+import CustomButton from "../../components/customButtons/CustomButton";
 
 export const Home = () => {
-
-  const columns = [
-    {
-      "header": "N° Sol.",
-      "accessorKey": "idsol",
-      "size": "small"
-    },
-    {
-      "header": "Fecha Creación",
-      "accessorKey": "fechacre",
-      "size": "medium"
-    },
-    {
-      "header": "Estado",
-      "accessorKey": "idest",
-      "size": "medium"
-    },
-    {
-      "header": "Categoria",
-      "accessorKey": "idcat",
-      "size": "medium"
-    },
-    {
-      "header": "Tecnico Responsable",
-      "accessorKey": "tecnico",
-      "size": "large"
-    },
-    {
-      "header": "Detalles",
-      "size": "small"
-    },
-    {
-      "header": "Fecha Cierre",
-      "accessorKey":"fechaci",
-      "size": "medium"
-    }
-  ]
-
-
-  const { data } = useHome()
+  const { data, columns } = useHome();
 
   return (
     <View style={styles.container}>
-      <Text>Solicitudes</Text>
-      <View style={{ flexDirection: "row" }}>
-        <Pressable>
-          <Text>Crear Solicitud</Text>
-        </Pressable>
-        <Pressable>
-          <Text>Tus Activos</Text>
-        </Pressable>
+      <Text style={styles.title}>Solicitudes</Text>
+      <View style={styles.buttons}>
+        <CustomButton text="Crear Solicitud" onPress={() => {}} />
+        <CustomButton
+          text="Tus Activos"
+          onPress={() => {}}
+          backgroundColor="#FF3E3E"
+        />
       </View>
-      <ScrollView horizontal>
-      <Table columns={columns} data={data} />
-      </ScrollView>
+      {data.length !== 0 ? (
+        <ScrollView horizontal>
+          <ScrollView>
+            <Table columns={columns} data={data} />
+          </ScrollView>
+        </ScrollView>
+      ) : (
+        <Text>Sin Solicitudes</Text>
+      )}
     </View>
   );
 };
@@ -67,9 +35,16 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#ffffff",
     width: "100%",
-    height: "80%",
+    height: "100%",
     alignItems: "center",
     padding: 20,
-  }
+  },
+  title: {
+    fontSize: 18,
+  },
+  buttons: {
+    flexDirection: "row",
+    marginVertical: 15,
+    gap: 20,
+  },
 });
-

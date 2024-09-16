@@ -10,6 +10,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useEffect } from "react";
 import { RootStackParamList } from "../../../App";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import React from "react";
 
 interface Props extends NativeStackScreenProps<RootStackParamList, 
 'Login'>{};
