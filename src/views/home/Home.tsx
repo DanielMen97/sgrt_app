@@ -1,46 +1,50 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, Pressable } from "react-native";
+import { View, StyleSheet, Text, Pressable, ScrollView } from "react-native";
 import Table from "../../components/Table";
 import useHome from "./useHome";
 
 export const Home = () => {
 
-<<<<<<< HEAD
-  const { data } = useHome()
-
   const columns = [
     {
       "header": "N° Sol.",
       "accessorKey": "idsol",
+      "size": "small"
     },
     {
       "header": "Fecha Creación",
       "accessorKey": "fechacre",
+      "size": "medium"
     },
     {
       "header": "Estado",
       "accessorKey": "idest",
+      "size": "medium"
     },
     {
       "header": "Categoria",
       "accessorKey": "idcat",
+      "size": "medium"
     },
     {
       "header": "Tecnico Responsable",
       "accessorKey": "tecnico",
+      "size": "large"
     },
     {
       "header": "Detalles",
+      "size": "small"
     },
     {
       "header": "Fecha Cierre",
-      "accessorKey":"fechaci"
+      "accessorKey":"fechaci",
+      "size": "medium"
     }
   ]
 
-=======
-  const { columns, data } = useHome()
->>>>>>> 85cd3fe689f42455697bf6fceac68454d35e53be
+
+  const { data } = useHome()
+
   return (
     <View style={styles.container}>
       <Text>Solicitudes</Text>
@@ -52,7 +56,9 @@ export const Home = () => {
           <Text>Tus Activos</Text>
         </Pressable>
       </View>
+      <ScrollView horizontal>
       <Table columns={columns} data={data} />
+      </ScrollView>
     </View>
   );
 };

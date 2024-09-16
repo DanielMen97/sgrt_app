@@ -1,8 +1,9 @@
-import UserContextProvider from "./context/UserContext";
+import UserContextProvider from "./src/context/UserContext";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Login } from "./src/views/auth/Login";
 import { Home } from "./src/views/home/Home";
+import React from "react";
 
 export type RootStackParamList = {
   Login: undefined;
