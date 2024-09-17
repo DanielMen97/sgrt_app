@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
         borderColor: "gray",
         flexDirection: "row",
         width: "100%",
+        height: 45
       },
       text: {
         textAlign: "center",

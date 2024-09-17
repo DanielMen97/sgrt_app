@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react"
 import { getListRequestByClient } from "../../services/RequestsServices"
+import React from "react";
+import CustomButton from "../../components/customButtons/CustomButton";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const useHome = () => {
 
@@ -19,21 +22,26 @@ const useHome = () => {
     {
       header: "Estado",
       accessorKey: "idest",
-      size: "medium",
+      size: "large",
     },
     {
       header: "Tecnico Responsable",
       accessorKey: "tecnico",
-      size: "large",
+      size: "xlarge",
     },
     {
       header: "Prioridad",
       accessorKey: "prio",
-      size: "medium",
+      size: "large",
     },
     {
       header: "Detalles",
       size: "medium",
+      renderCell: (row: any) => {
+        return (
+          <CustomButton backgroundColor="#38761d" icon={faPlus} onPress={() => {console.log(row.idsol)}}/>
+        )
+      }
     },
     {
       header: "Fecha Cierre",

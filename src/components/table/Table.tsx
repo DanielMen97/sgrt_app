@@ -1,13 +1,13 @@
 import React, { ReactNode } from "react";
 import { View, Text } from "react-native";
 import useTable from "./useTable";
-import { styles } from './styles'
+import { styles } from "./styles";
 
 interface ColumnsI {
   header: string;
   accessorKey?: string;
   size?: string;
-  renderCell?: (row: any) => ReactNode
+  renderCell?: (row: any) => ReactNode;
 }
 
 interface props {
@@ -17,19 +17,7 @@ interface props {
 
 const Table = ({ columns, data }: props) => {
 
-  const { getWidth, td, th } = useTable();
-
-  const customCell = (row: any, renderCell: (row: any) => ReactNode) => {
-    return renderCell(row)
-  }
-
-  const cell = (accessorKey: string | undefined, row: any, renderCell?: any): ReactNode => {
-    if (!renderCell) {
-      return <Text style={styles.text}>{row[accessorKey]}</Text>
-    } else {
-      return customCell(row, renderCell)
-    }
-  }
+  const { getWidth, td, th, cell } = useTable();
 
   return (
     <View style={styles.table}>
@@ -53,9 +41,6 @@ const Table = ({ columns, data }: props) => {
                 key={columns.indexOf(elem) + 1}
                 style={{ ...td, width: getWidth(elem.size) }}
               >
-                {/* {elem.accessorKey && (
-                  <Text style={styles.text}>{item[elem.accessorKey]}</Text>
-                )} */}
                 {cell(elem.accessorKey, item, elem.renderCell)}
               </View>
             ))}
@@ -65,6 +50,4 @@ const Table = ({ columns, data }: props) => {
     </View>
   );
 };
-;
-
 export default Table;

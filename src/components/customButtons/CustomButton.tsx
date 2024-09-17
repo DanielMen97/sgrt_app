@@ -30,7 +30,7 @@ const CustomButton = ({
       }}
       onPress={onPress}
     >
-      {icon ? <FontAwesomeIcon icon={icon} /> : <Text style={{ color: "white", textAlign: 'center', fontSize: 19 }}>{text}</Text>}
+      {icon ? <FontAwesomeIcon icon={icon} color="white" /> : <Text style={{ color: "white", textAlign: 'center', fontSize: 19 }}>{text}</Text>}
     </TouchableOpacity>
   );
 };
