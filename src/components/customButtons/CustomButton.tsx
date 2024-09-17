@@ -5,7 +5,7 @@ import { TouchableOpacity, Text } from "react-native";
 
 interface props {
   text?: string;
-  onPress: () => void;
+  onPress?: () => void;
   backgroundColor?: string;
   icon?: IconProp,
   width?: number
@@ -30,7 +30,7 @@ const CustomButton = ({
       }}
       onPress={onPress}
     >
-      {icon ? <FontAwesomeIcon icon={icon} color="white" /> : <Text style={{ color: "white", textAlign: 'center', fontSize: 19 }}>{text}</Text>}
+      {icon ? <FontAwesomeIcon icon={icon} color="white" size={21}/> : <Text style={{ color: "white", textAlign: 'center', fontSize: 19 }}>{text}</Text>}
     </TouchableOpacity>
   );
 };

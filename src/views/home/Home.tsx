@@ -1,20 +1,33 @@
 import React from "react";
-import { View, StyleSheet, Text, Pressable, ScrollView, Button } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+} from "react-native";
 import Table from "../../components/table/Table";
 import useHome from "./useHome";
 import CustomButton from "../../components/customButtons/CustomButton";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../../App";
 
-export const Home = () => {
+interface Props extends NativeStackScreenProps<RootStackParamList, "Home"> {}
+
+export const Home = ({ navigation, route }: Props) => {
+
   const { data, columns } = useHome();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Solicitudes</Text>
       <View style={styles.buttons}>
-        <CustomButton text="Crear Solicitud" onPress={() => {}} />
+        <CustomButton text="Crear Solicitud" onPress={() => {
+          navigation.navigate("CreateRequest")
+        }} />
         <CustomButton
           text="Tus Activos"
-          onPress={() => {}}
+          onPress={() => {
+            navigation.navigate("YourAssets")
+          }}
           backgroundColor="#FF3E3E"
           width={140}
         />
@@ -39,10 +52,6 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
     padding: 20,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: '700'
   },
   buttons: {
     flexDirection: "row",

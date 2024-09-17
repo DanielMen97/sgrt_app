@@ -17,11 +17,11 @@ interface Props extends NativeStackScreenProps<RootStackParamList,
 
 export const Login = ({navigation, route}: Props) => {
 
-  const { handleInputChange, onSubmit,  response } = useLogin();
+  const { handleInputChange, onSubmit, response, correo, pass } = useLogin();
 
   useEffect(() => {
     if (response?.nodoc) {
-      navigation.replace('Home');
+      navigation.navigate('Home');
       }   
   },[response])
 
@@ -46,6 +46,7 @@ export const Login = ({navigation, route}: Props) => {
               placeholder="Correo electronico"
               placeholderTextColor="#FFFFFF"
               keyboardType="email-address"
+              value={correo}
               onChangeText={value => handleInputChange("correo", value)}
             />
           </View>
@@ -56,6 +57,7 @@ export const Login = ({navigation, route}: Props) => {
               placeholder="Contraseña"
               placeholderTextColor="#FFFFFF"
               keyboardType="default"
+              value={pass}
               onChangeText={value => handleInputChange("pass", value)}
               secureTextEntry={true}
             />
