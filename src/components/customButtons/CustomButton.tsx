@@ -7,7 +7,8 @@ interface props {
   text?: string;
   onPress: () => void;
   backgroundColor?: string;
-  icon?: IconProp
+  icon?: IconProp,
+  width?: number
 }
 
 const CustomButton = ({
@@ -15,6 +16,7 @@ const CustomButton = ({
   onPress,
   backgroundColor = "#5B63F3",
   icon,
+  width
 }: props) => {
   return (
     <TouchableOpacity
@@ -24,10 +26,11 @@ const CustomButton = ({
         borderWidth: 0,
         paddingVertical: 4,
         paddingHorizontal: 10,
+        width
       }}
       onPress={onPress}
     >
-      {icon ? <FontAwesomeIcon icon={icon} /> : <Text style={{ color: "white", textAlign: 'center' }}>{text}</Text>}
+      {icon ? <FontAwesomeIcon icon={icon} /> : <Text style={{ color: "white", textAlign: 'center', fontSize: 19 }}>{text}</Text>}
     </TouchableOpacity>
   );
 };

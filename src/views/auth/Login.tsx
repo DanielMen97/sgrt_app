@@ -17,7 +17,7 @@ interface Props extends NativeStackScreenProps<RootStackParamList,
 
 export const Login = ({navigation, route}: Props) => {
 
-  const { handleInputChange, onSubmit, response } = useLogin();
+  const { handleInputChange, onSubmit,  response } = useLogin();
 
   useEffect(() => {
     if (response?.nodoc) {

@@ -26,6 +26,6 @@ export const styles = StyleSheet.create({
       },
       text: {
         textAlign: "center",
-        fontSize: 17,
+        fontSize: 16,
       }
   })

@@ -27,6 +27,11 @@ const useHome = () => {
       size: "large",
     },
     {
+      header: "Prioridad",
+      accessorKey: "prio",
+      size: "medium",
+    },
+    {
       header: "Detalles",
       size: "medium",
     },

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, Pressable, ScrollView } from "react-native";
+import { View, StyleSheet, Text, Pressable, ScrollView, Button } from "react-native";
 import Table from "../../components/table/Table";
 import useHome from "./useHome";
 import CustomButton from "../../components/customButtons/CustomButton";
@@ -16,6 +16,7 @@ export const Home = () => {
           text="Tus Activos"
           onPress={() => {}}
           backgroundColor="#FF3E3E"
+          width={140}
         />
       </View>
       {data.length !== 0 ? (
@@ -41,6 +42,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
+    fontWeight: '700'
   },
   buttons: {
     flexDirection: "row",
