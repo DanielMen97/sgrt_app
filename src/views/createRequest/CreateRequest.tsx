@@ -21,7 +21,7 @@ interface Props
 
 export const CreateRequest = ({ navigation, route }: Props) => {
   return (
-    <View style={{alignItems: 'center', width: "100%", height: "100%", paddingTop: 50}}>
+    <View style={{alignItems: 'center', width: "100%", height: "100%", paddingTop: 30}}>
       <View style={styles.form}>
         <Text style={styles.formText}>Seleccione la categoria de su solicitud...</Text>
         <Dropdown
@@ -38,7 +38,7 @@ export const CreateRequest = ({ navigation, route }: Props) => {
         <Text style={styles.formText}>Ingrese la observación de su solicitud...</Text>
         <TextInput style={styles.formTextInput} multiline numberOfLines={8}/>
       </View>
-      <CustomButton text="Guardar"/>
+      <CustomButton text="Guardar Solicitud" backgroundColor="#148f77"/>
     </View>
   );
 };
