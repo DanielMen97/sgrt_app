@@ -4,41 +4,33 @@ import { RootStackParamList } from "../../../App";
 import { Text, View, StyleSheet, TextInput } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import CustomButton from "../../components/customButtons/CustomButton";
-
-const data = [
-  { label: "Item 1", value: "1" },
-  { label: "Item 2", value: "2" },
-  { label: "Item 3", value: "3" },
-  { label: "Item 4", value: "4" },
-  { label: "Item 5", value: "5" },
-  { label: "Item 6", value: "6" },
-  { label: "Item 7", value: "7" },
-  { label: "Item 8", value: "8" },
-];
+import useCreateRequest from "./useCreateRequest";
 
 interface Props
   extends NativeStackScreenProps<RootStackParamList, "CreateRequest"> {}
 
 export const CreateRequest = ({ navigation, route }: Props) => {
+
+  const { categories, handleInputChange, onSubmit } = useCreateRequest()
   return (
     <View style={{alignItems: 'center', width: "100%", height: "100%", paddingTop: 30}}>
       <View style={styles.form}>
         <Text style={styles.formText}>Seleccione la categoria de su solicitud...</Text>
         <Dropdown
-          data={data}
-          labelField="label"
-          valueField="value"
-          onChange={(item) => console.log(item)}
+          data={categories}
+          labelField="nombre"
+          valueField="idcat"
+          onChange={(item) => handleInputChange("idcat", item.idcat)}
           maxHeight={300}
-          placeholder="Select item"
+          placeholder="Seleccione ..."
           style={styles.dropdown}
           placeholderStyle={styles.placeholderStyle}
           selectedTextStyle={styles.selectedTextStyle}
         />
         <Text style={styles.formText}>Ingrese la observación de su solicitud...</Text>
-        <TextInput style={styles.formTextInput} multiline numberOfLines={8}/>
+        <TextInput style={styles.formTextInput} multiline numberOfLines={8} onChangeText={text => handleInputChange("obser", text)}/>
       </View>
-      <CustomButton text="Guardar Solicitud" backgroundColor="#148f77"/>
+      <CustomButton text="Guardar Solicitud" backgroundColor="#148f77" onPress={() => onSubmit(navigation)}/>
     </View>
   );
 };
@@ -88,6 +80,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 2,
-    textAlignVertical: 'top'
+    textAlignVertical: 'top',
+    fontSize: 17
   }
 });

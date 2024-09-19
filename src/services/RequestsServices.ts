@@ -1,7 +1,7 @@
 import { ModifyRequestI, RequestCreateI, UpdateRequestSupervisorI, UpdateRequestTechnicalI } from "../models/RequestModels"
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-const baseUrl: string = 'http://192.168.43.21:8080'
+const baseUrl: string = 'http://192.168.1.39:8080'
 
 export const consultRequests = () => {
   const token = localStorage.getItem('token')
@@ -12,13 +12,15 @@ export const consultRequests = () => {
   .then(response => response.json())
 }
 
-export const createRequests = (createRequestsData: RequestCreateI) => {
-  const token = AsyncStorage.getItem('token')
-  return fetch(`${baseUrl}/adminuser/create_solicitud`, {method:'POST', headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`
-  }, body: JSON.stringify(createRequestsData)})
-  .then(response => response.json())
+export const createRequests = async (createRequestsData: RequestCreateI) => {
+  const token = await AsyncStorage.getItem('token')
+  const response = await fetch(`${baseUrl}/adminuser/create_solicitud`, {
+    method: 'POST', headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }, body: JSON.stringify(createRequestsData)
+  })
+  return await response.json()
 }
 
 export const modifyRequests = (modifyRequestsData: ModifyRequestI, idsol: number) => {
@@ -55,12 +57,14 @@ export const getListPriority = () => {
   .then(response => response.json())
 }
 
-export const getListCategories = () => {
-  const token = AsyncStorage.getItem('token')
-  return fetch(`${baseUrl}/adminuser/categorias`, { method: 'GET', headers:{
-    'Authorization': `Bearer ${token}`
-  }})
-  .then(response => response.json())
+export const getListCategories = async () => {
+  const token = await AsyncStorage.getItem('token')
+  const response = await fetch(`${baseUrl}/adminuser/categorias`, {
+    method: 'GET', headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  return await response.json()
 }
 
 export const getRequestById = (idsol:string | undefined) => {
