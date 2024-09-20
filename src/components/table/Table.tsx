@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import useTable from "./useTable";
 import { styles } from "./styles";
 
-interface ColumnsI {
+export interface ColumnsI {
   header: string;
   accessorKey?: string;
   size?: string;

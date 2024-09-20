@@ -1,6 +1,6 @@
 import { UserDataCreateI, UserDataI } from "../models/Global"
 
-const baseUrl: string = 'http://192.168.1.39:8080'
+const baseUrl: string = 'http://192.168.63.29:8080'
 
 export const login = (userData: UserDataI) => {
   return fetch(`${baseUrl}/auth/login`, {method:'POST', headers: {

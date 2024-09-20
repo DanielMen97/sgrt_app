@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -15,7 +15,13 @@ interface Props extends NativeStackScreenProps<RootStackParamList, "Home"> {}
 
 export const Home = ({ navigation, route }: Props) => {
 
-  const { data, columns } = useHome();
+  const { data, columns, idsol } = useHome();
+
+  useEffect(() => {
+    if(idsol){
+      navigation.navigate('DetailsRequest')
+    }
+  },[idsol])
 
   return (
     <View style={styles.container}>
